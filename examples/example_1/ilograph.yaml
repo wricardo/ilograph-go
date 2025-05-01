@@ -1,0 +1,49 @@
+description: "Microservices Architecture\n\nThis diagram represents the microservices architecture, \nincluding multiple services across domains such as landing pages, rule engines, workflows, \nemail, content management, and SMS messaging."
+imports:
+    - path: ""
+      from: ilograph/aws
+      namespace: AWS
+resources:
+    - name: MySystem
+      subtitle: My System
+      description: My System
+      children:
+        - name: Subsystem 1
+          subtitle: Subsystem 1
+          description: Subsystem 1
+          children:
+            - name: Subsystem 1 DB
+              subtitle: PostgreSQL database
+              description: PostgreSQL database for Subsystem 1
+              instanceOf: AWS::RDS
+              id: Subsystem 1 DB
+            - name: Subsystem 1 UI
+              subtitle: Frontend interface
+              description: Frontend interface for Subsystem 1
+              id: Subsystem 1 UI
+            - name: Subsystem 1 API
+              subtitle: Backend API
+              description: Backend API for Subsystem 1
+              id: Subsystem 1 API
+            - name: Subsystem 1 GRPC API
+              subtitle: GRPC API
+              description: GRPC API for Subsystem 1
+              id: Subsystem 1 GRPC API
+            - name: Subsystem 1 REST API
+              subtitle: REST API
+              description: REST API for Subsystem 1
+              id: Subsystem 1 REST API
+          id: Subsystem 1
+      id: MySystem
+perspectives:
+    - name: System Services
+      color: DarkBlue
+      relations:
+        - from: User
+          to: MySystem
+          label: Uses
+          description: Uses My System
+        - from: MySystem
+          to: ExternalSystem
+          label: Uses
+          description: Uses External System
